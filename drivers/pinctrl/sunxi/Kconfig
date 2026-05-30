@@ -141,4 +141,15 @@ config PINCTRL_SUN55I_A523_R
 	default ARM64 && ARCH_SUNXI
 	select PINCTRL_SUNXI
 
+config PINCTRL_SUN60I_A733
+	bool "Support for the Allwinner A733 PIO"
+	default ARM64 && ARCH_SUNXI
+	select PINCTRL_SUNXI
+	help
+	  Say y here to build support for the main pin controller found in
+	  the Allwinner A733 SoC.
+
+	  This initial driver supports the DT-described pinmux table path
+	  used for early UART0 and SDMMC0 bring-up on the Radxa Cubie A7S.
+
 endif
