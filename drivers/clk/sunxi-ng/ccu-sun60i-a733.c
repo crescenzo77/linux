@@ -3,8 +3,9 @@
  * Minimal Allwinner A733 CCU support.
  *
  * This intentionally exposes only the clocks and resets needed by the first
- * Cubie A7S UART0/SDMMC0 DTS skeleton. The full parent tree still needs to be
- * implemented from a reviewed A733 clock/reset map.
+ * Cubie A7S UART0/SDMMC0 DTS skeleton, plus the first GMAC0 gate/reset needed
+ * for source-level Ethernet preparation. The full parent tree still needs to
+ * be implemented from a reviewed A733 clock/reset map.
  */
 
 #include <linux/clk-provider.h>
@@ -35,11 +36,14 @@ static SUNXI_CCU_GATE_DATA(mmc0_clk, "mmc0", hosc, 0xd00, BIT(31), 0);
 static SUNXI_CCU_GATE_DATA(bus_mmc0_clk, "bus-mmc0", hosc, 0xd0c, BIT(0), 0);
 static SUNXI_CCU_GATE_HWS(bus_uart0_clk, "bus-uart0", apb_uart_hws,
 			  0xe00, BIT(0), 0);
+static SUNXI_CCU_GATE_DATA(bus_gmac0_clk, "bus-gmac0", hosc,
+			   0x141c, BIT(0), 0);
 
 static struct ccu_common *sun60i_a733_ccu_clks[] = {
 	&mmc0_clk.common,
 	&bus_mmc0_clk.common,
 	&bus_uart0_clk.common,
+	&bus_gmac0_clk.common,
 };
 
 static struct clk_hw_onecell_data sun60i_a733_hw_clks = {
@@ -49,6 +53,7 @@ static struct clk_hw_onecell_data sun60i_a733_hw_clks = {
 		[CLK_MMC0]	= &mmc0_clk.common.hw,
 		[CLK_BUS_MMC0]	= &bus_mmc0_clk.common.hw,
 		[CLK_BUS_UART0]	= &bus_uart0_clk.common.hw,
+		[CLK_BUS_GMAC0]	= &bus_gmac0_clk.common.hw,
 	},
 	.num	= CLK_NUMBER,
 };
@@ -56,6 +61,7 @@ static struct clk_hw_onecell_data sun60i_a733_hw_clks = {
 static struct ccu_reset_map sun60i_a733_ccu_resets[] = {
 	[RST_BUS_MMC0]	= { 0xd0c, BIT(16) },
 	[RST_BUS_UART0]	= { 0xe00, BIT(16) },
+	[RST_BUS_GMAC0]	= { 0x141c, BIT(16) },
 };
 
 static const struct sunxi_ccu_desc sun60i_a733_ccu_desc = {

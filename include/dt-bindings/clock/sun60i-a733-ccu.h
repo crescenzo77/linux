@@ -8,5 +8,6 @@
 #define CLK_MMC0		143
 #define CLK_BUS_MMC0		147
 #define CLK_BUS_UART0		154
+#define CLK_BUS_GMAC0		233
 
 #endif /* _DT_BINDINGS_CLK_SUN60I_A733_CCU_H_ */

@@ -5,5 +5,6 @@
 
 #define RST_BUS_MMC0		36
 #define RST_BUS_UART0		44
+#define RST_BUS_GMAC0		95
 
 #endif /* _DT_BINDINGS_RST_SUN60I_A733_CCU_H_ */
