@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/clock/allwinner,sun60i-a733-ccu.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Allwinner A733 Clock Control Unit
+
+maintainers:
+  - Enzo Adriano <enzo.adriano.code@gmail.com>
+
+properties:
+  "#clock-cells":
+    const: 1
+
+  "#reset-cells":
+    const: 1
+
+  compatible:
+    const: allwinner,sun60i-a733-ccu
+
+  reg:
+    maxItems: 1
+
+  clocks:
+    items:
+      - description: High Frequency Oscillator, usually 24 MHz
+      - description: Low Frequency Oscillator, usually 32 kHz
+      - description: Internal Oscillator
+
+  clock-names:
+    items:
+      - const: hosc
+      - const: losc
+      - const: iosc
+
+required:
+  - "#clock-cells"
+  - "#reset-cells"
+  - compatible
+  - reg
+  - clocks
+  - clock-names
+
+additionalProperties: false
+
+examples:
+  - |
+    clock-controller@2002000 {
+        compatible = "allwinner,sun60i-a733-ccu";
+        reg = <0x02002000 0x2000>;
+        clocks = <&osc24M>, <&osc32k>, <&iosc>;
+        clock-names = "hosc", "losc", "iosc";
+        #clock-cells = <1>;
+        #reset-cells = <1>;
+    };
+
+...
