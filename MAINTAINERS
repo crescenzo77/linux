@@ -2416,6 +2416,7 @@ F:	drivers/clk/sunxi-ng/
 F:	drivers/pinctrl/sunxi/
 F:	drivers/soc/sunxi/
 N:	allwinner
+N:	sun60i
 N:	sun[x456789]i
 N:	sun[25]0i
 
