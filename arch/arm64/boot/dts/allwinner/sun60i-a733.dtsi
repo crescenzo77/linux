@@ -172,10 +172,7 @@
 
 		gic: interrupt-controller@3400000 {
 			compatible = "arm,gic-v3";
-			#address-cells = <1>;
 			#interrupt-cells = <3>;
-			#size-cells = <1>;
-			ranges;
 			interrupt-controller;
 			reg = <0x03400000 0x10000>,
 			      <0x03460000 0x100000>;
