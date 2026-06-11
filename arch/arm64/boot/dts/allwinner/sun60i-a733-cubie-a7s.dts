@@ -37,6 +37,7 @@
 &pio {
 	uart0_pb9_pb10_pins: uart0-pb9-pb10-pins {
 		pins = "PB9", "PB10";
+		allwinner,pinmux = <2>;
 		function = "uart0";
 	};
 };
